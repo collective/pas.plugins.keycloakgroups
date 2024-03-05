@@ -14,7 +14,7 @@ long_description = f"""
 
 setup(
     name="pas.plugins.keycloakgroups",
-    version="1.0.0a1",
+    version="1.0.0a2.dev0",
     description="Use groups from Keycloak inside Plone portals.",
     long_description=long_description,
     long_description_content_type="text/markdown",
