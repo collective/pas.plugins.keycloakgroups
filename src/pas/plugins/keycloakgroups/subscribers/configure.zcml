@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber
+      for="pas.plugins.keycloakgroups.interfaces.IKeycloakSettings
+           plone.registry.interfaces.IRecordModifiedEvent"
+      handler=".settings.keycloak_settings_modified"
+      />
+</configure>

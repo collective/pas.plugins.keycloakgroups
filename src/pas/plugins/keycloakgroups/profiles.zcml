@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="pas.plugins.keycloakgroups"
+    >
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Keycloak Groups"
+      description="Install support for using groups from Keycloak."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Keycloak Groups"
+      description="Uninstall Keycloak groups support."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
+
+  <!-- Hide Uninstall Profile-->
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="pas.plugins.keycloakgroups"
+      />
+
+  <include package=".upgrades" />
+
+</configure>

@@ -1,0 +1,60 @@
+# Generated from:
+# https://github.com/plone/meta/tree/main/config/default
+# See the inline comments on how to expand/tweak this configuration file
+[meta]
+template = "default"
+commit-id = "77741782"
+
+[pyproject]
+codespell_skip = "*.min.js,*.pot,*.po,*.yaml,*.json"
+codespell_ignores = "vew"
+dependencies_ignores = "['plone.restapi', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'pytest', 'pytest-cov', 'pytest-plone', 'pytest-docker', 'pytest-vcr', 'pytest-mock', 'gocept.pytestlayer', 'requests-mock', 'vcrpy']"
+dependencies_mappings = [
+    "Plone = ['Products.CMFPlone', 'Products.CMFCore', 'Products.GenericSetup', 'Products.PluggableAuthService', 'Products.PlonePAS', 'plone.app.contenttypes', 'plone.memoize', 'plone.app.registry', 'plone.registry', 'AccessControl', 'zope.component', 'zope.i18nmessageid', 'zope.interface', 'zope.publisher', 'zope.schema']",
+    "python-keycloak = ['keycloak']",
+    ]
+check_manifest_ignores = """
+    "news/*",
+    "constraints-mxdev.txt",
+    "requirements-mxdev.txt",
+"""
+towncrier_issue_format = "[#{issue}](https://github.com/collective/pas.plugins.keycloakgroups/issues/{issue})"
+extra_lines = """
+[tool.coverage.run]
+omit = ["*/locales/*"]
+
+[tool.bandit]
+targets = "src"
+exclude_dirs = ["tests", "src/pas/plugins/keycloakgroups/locales"]
+"""
+
+[gitignore]
+extra_lines = """
+share
+requirements-mxdev.txt
+"""
+
+[tox]
+use_mxdev = true
+test_runner = "pytest"
+test_path = "/tests"
+
+[github]
+ref = "1.0.0"
+jobs = [
+    "qa",
+    "test",
+    "coverage",
+    "dependencies",
+    "release_ready",
+    ]
+
+[pre_commit]
+extra_lines = """
+- repo: https://github.com/PyCQA/bandit
+  rev: '1.7.5'
+  hooks:
+  - id: bandit
+    args: ["-c", "pyproject.toml"]
+    additional_dependencies: ["bandit[toml]"]
+"""

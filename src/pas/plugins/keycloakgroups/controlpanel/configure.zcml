@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="pas.plugins.keycloakgroups"
+    >
+
+  <include package="plone.restapi" />
+
+  <browser:page
+      name="keycloak-groups-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.KeycloakGroupsSettingsControlPanel"
+      permission="cmf.ManagePortal"
+      layer="pas.plugins.keycloakgroups.interfaces.IBrowserLayer"
+      />
+
+  <adapter
+      factory=".controlpanel.KeycloakGroupsSettingsConfigletPanel"
+      name="keycloak_groups"
+      />
+
+
+</configure>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="pas.plugins.keycloakgroups"
+>
+  <!-- Keycloak Groups -->
+  <records interface="pas.plugins.keycloakgroups.interfaces.IKeycloakSettings"
+           prefix="keycloak_groups"
+  >
+    <value key="enabled">False</value>
+    <value key="server_url" />
+    <value key="realm_name" />
+    <value key="client_id" />
+    <value key="client_secret" />
+    <value key="verify">True</value>
+  </records>
+
+</registry>
