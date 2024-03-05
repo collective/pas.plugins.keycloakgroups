@@ -33,7 +33,7 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    keywords="Python Plone CMS",
+    keywords="Python Plone CMS Keycloak Authentication Zope",
     author="Érico Andrei",
     author_email="ericof@plone.org",
     url="https://github.com/collective/pas.plugins.keycloakgroups",
