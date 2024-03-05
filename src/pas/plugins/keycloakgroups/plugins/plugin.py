@@ -241,6 +241,11 @@ class KeycloakGroupsPlugin(BasePlugin):
             return self._keycloak_group_members(group_id=group_id)
         return default
 
+    def _get_roles_for_group(self, group_id: str) -> list:
+        """Return a list of roles for a given group."""
+        group_info = self._get_group_info(group_id=group_id)
+        return group_info.get("_roles", []) if group_info else []
+
     #
     #   IRolesPlugin implementation
     #
@@ -250,16 +255,21 @@ class KeycloakGroupsPlugin(BasePlugin):
 
         We only care about principals(groups) defined in this plugin.
         """
-        default = tuple()
-        principal_id = principal.getId()
-        if (
-            self.is_plugin_active(plugins.IRolesPlugin)
-            and principal_id in self._keycloak_groups
-        ):
-            group_info = self._get_group_info(group_id=principal_id)
-            if group_info:
-                return tuple(group_info.get("_roles", default))
-        return default
+        roles = []
+        if self.is_plugin_active(plugins.IRolesPlugin):
+            keycloak_groups_ids = [group_id for group_id in self._keycloak_groups]
+            principal_id = principal.getId()
+            if principal_id in keycloak_groups_ids:
+                # Direct roles
+                roles.extend(self._get_roles_for_group(principal_id))
+            # Inherited roles
+            all_group_ids = (
+                principal.getGroupIds() if hasattr(principal, "getGroupIds") else []
+            )
+            our_group_ids = [gid for gid in all_group_ids if gid in keycloak_groups_ids]
+            for group_id in our_group_ids:
+                roles.extend(self._get_roles_for_group(group_id))
+        return tuple(roles)
 
 
 InitializeClass(KeycloakGroupsPlugin)

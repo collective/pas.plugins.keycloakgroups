@@ -33,6 +33,7 @@ PAS plugin providing the following interfaces:
 
 * Products.PluggableAuthService.interfaces.IGroupsPlugin
 * Products.PluggableAuthService.interfaces.IGroupEnumerationPlugin
+* Products.PluggableAuthService.interfaces.IRolesPlugin
 * Products.PlonePAS.interfaces.group.IGroupIntrospection
 
 ## Installation

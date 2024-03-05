@@ -12,11 +12,11 @@ PLUGIN_GROUP = (
     KeycloakGroupsPlugin,
     PLUGIN_ID,
     "Keycloak Groups",
-    False,
     [
         "IGroupsPlugin",
         "IGroupIntrospection",
         "IGroupEnumerationPlugin",
+        "IRolesPlugin",
     ],
 )
 
@@ -75,20 +75,17 @@ def activate_plugin(
 
 
 def deactivate_plugin(pas: PluggableAuthService, plugin_id: str, interface_name: str):
-    if plugin_id not in pas.objectIds():
-        raise ValueError(f"acl_users has no plugin {plugin_id}.")
-    plugins = pas.plugins
-    iface = plugins._getInterfaceFromName(interface_name)
-    plugins.deactivatePlugin(iface, plugin_id)
-    logger.info(f"Deactivated interface {interface_name} for plugin {plugin_id}")
+    if plugin_id in pas.objectIds():
+        plugins = pas.plugins
+        iface = plugins._getInterfaceFromName(interface_name)
+        plugins.deactivatePlugin(iface, plugin_id)
+        logger.info(f"Deactivated interface {interface_name} for plugin {plugin_id}")
 
 
 def add_pas_plugin(
     klass: Type,
     plugin_id: str,
     title: str,
-    should_activate: bool,
-    move_to_top: List[str],
 ) -> Union[KeycloakGroupsPlugin]:
     """Add a new plugin to acl_users."""
     pas = api.portal.get_tool("acl_users")
@@ -98,21 +95,18 @@ def add_pas_plugin(
         plugin.id = plugin_id
         pas._setObject(plugin_id, plugin)
         logger.info(f"Added {plugin_id} to acl_users.")
-    if should_activate:
-        activate = interfaces_for_plugin(pas, plugin_id)
-        for interface_name in activate:
-            _move_to_top = interface_name in move_to_top
-            activate_plugin(pas, plugin_id, interface_name, _move_to_top)
+
     return plugin
 
 
 def remove_pas_plugin(klass: Type, plugin_id: str) -> bool:
     """Remove pas plugin from acl_users."""
+    status = False
     pas = api.portal.get_tool("acl_users")
     # Remove plugin if it exists.
     plugin = get_plugin(plugin_id, klass)
     if plugin:
         pas._delObject(plugin_id)
         logger.info(f"Removed {klass.__name__} {plugin_id} from acl_users.")
-        return True
-    return False
+        status = True
+    return status

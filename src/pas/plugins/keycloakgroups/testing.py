@@ -15,12 +15,18 @@ class Layer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import pas.plugins.oidc
         import plone.restapi
 
         self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=pas.plugins.oidc)
         self.loadZCML(package=pas.plugins.keycloakgroups)
 
     def setUpPloneSite(self, portal):
+        # Install plone.restapi
+        applyProfile(portal, "plone.restapi:default")
+        # Install pas.plugins.oidc
+        applyProfile(portal, "pas.plugins.oidc:default")
         applyProfile(portal, "pas.plugins.keycloakgroups:default")
 
 
@@ -35,4 +41,9 @@ INTEGRATION_TESTING = IntegrationTesting(
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE, WSGI_SERVER_FIXTURE),
     name="pas.plugins.keycloakgroupsLayer:FunctionalTesting",
+)
+
+RESTAPI_TESTING = FunctionalTesting(
+    bases=(FIXTURE, WSGI_SERVER_FIXTURE),
+    name="pas.plugins.keycloakgroupsLayer:RestAPITesting",
 )

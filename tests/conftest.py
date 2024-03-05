@@ -1,8 +1,11 @@
 from pas.plugins.keycloakgroups.testing import FUNCTIONAL_TESTING
 from pas.plugins.keycloakgroups.testing import INTEGRATION_TESTING
+from pas.plugins.keycloakgroups.testing import RESTAPI_TESTING
 from pathlib import Path
+from plone import api
 from pytest_plone import fixtures_factory
 from requests.exceptions import ConnectionError
+from zope.component.hooks import setSite
 
 import pytest
 import requests
@@ -16,6 +19,7 @@ globals().update(
         (
             (INTEGRATION_TESTING, "integration"),
             (FUNCTIONAL_TESTING, "functional"),
+            (RESTAPI_TESTING, "restapi"),
         )
     )
 )
@@ -77,3 +81,17 @@ def wait_for():
         thread.join()
 
     return func
+
+
+@pytest.fixture()
+def portal(integration, keycloak, keycloak_api):
+    portal = integration["portal"]
+    setSite(portal)
+    plugin = portal.acl_users.oidc
+    with api.env.adopt_roles(["Manager", "Member"]):
+        for key, value in keycloak.items():
+            setattr(plugin, key, value)
+        for key, value in keycloak_api.items():
+            name = f"keycloak_groups.{key}"
+            api.portal.set_registry_record(name, value)
+    return portal
