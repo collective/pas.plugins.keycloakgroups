@@ -1,4 +1,4 @@
-<div align="center"><img alt="logo" src="./docs/_static/icon.png" width="70" /></div>
+<div align="center"><img alt="logo" src="https://github.com/collective/pas.plugins.keycloakgroups/blob/main/docs/_static/icon.png" width="70" /></div>
 
 <h1 align="center">Keycloak Groups</h1>
 <h2 align="center">Use groups from Keycloak inside Plone portals</h2>
