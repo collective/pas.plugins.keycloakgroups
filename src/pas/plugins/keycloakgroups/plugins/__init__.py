@@ -1,4 +1,4 @@
-from .keycloak_group import KeycloakGroup  # noQA
+from .group import KeycloakGroup  # noQA
 from .plugin import IKeycloakGroupsPlugin  # noQA
 from .plugin import KeycloakGroupsPlugin  # noQA
 

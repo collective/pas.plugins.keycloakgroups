@@ -1,4 +1,4 @@
-from pas.plugins.keycloakgroups.plugins import keycloak_group
+from pas.plugins.keycloakgroups.plugins import group as keycloak_group
 from plone import api
 
 import logging
