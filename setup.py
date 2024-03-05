@@ -67,6 +67,7 @@ setup(
             "pytest-cov",
             "pytest-plone>=0.2.0",
             "pytest-docker",
+            "pas.plugins.oidc>=2.0.0a1",
         ],
     },
     entry_points="""

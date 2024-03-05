@@ -14,4 +14,5 @@ The PAS plugin provides the following interfaces:
 
 * Products.PluggableAuthService.interfaces.IGroupsPlugin
 * Products.PluggableAuthService.interfaces.IGroupEnumerationPlugin
+* Products.PluggableAuthService.interfaces.IRolesPlugin
 * Products.PlonePAS.interfaces.group.IGroupIntrospection

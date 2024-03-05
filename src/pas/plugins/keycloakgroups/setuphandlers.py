@@ -16,8 +16,8 @@ class HiddenProfiles:
 
 def post_install(setup_tool: SetupTool):
     """Post install script"""
-    for klass, plugin_id, title, should_activate, move_to_top in setup.PLUGINS:
-        setup.add_pas_plugin(klass, plugin_id, title, should_activate, move_to_top)
+    for klass, plugin_id, title, *_ in setup.PLUGINS:
+        setup.add_pas_plugin(klass, plugin_id, title)
 
 
 def uninstall(setup_tool: SetupTool):

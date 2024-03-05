@@ -424,6 +424,29 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister" : false,
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "users" : [ {
+    "id" : "519af5bf-97d9-409a-8757-d7572d6cb144",
+    "createdTimestamp" : 1709666251748,
+    "username" : "plone-editor",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Machado",
+    "lastName" : "de Assis",
+    "email" : "editor@plone.org",
+    "credentials" : [ {
+      "id" : "3c25c4ee-c61b-41a5-bb23-b7d7e9b87285",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1709668195449,
+      "secretData" : "{\"value\":\"I2RCkOJMKJD1CqFfz7yqRYIsvhSFcTqaeC7UuV2RyH8=\",\"salt\":\"7L5WBYgpz4b6UDLrG+f6uA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-plone" ],
+    "notBefore" : 0,
+    "groups" : [ "/Management" ]
+  }, {
     "id" : "c8015acc-d651-4a3e-b46e-03fef0805ae0",
     "createdTimestamp" : 1703177526345,
     "username" : "service-account-admin-cli",
@@ -472,8 +495,8 @@
       "id" : "2c25c4ee-c61b-41a5-bb23-b7d7e9b87285",
       "type" : "password",
       "userLabel" : "My password",
-      "createdDate" : 1699477473484,
-      "secretData" : "{\"value\":\"zzjRuxHvkt5xWZ9fDCX68cSAT7bREoE0RuYm+Mh/UiI=\",\"salt\":\"GQnmIEDCdSDXPUidfgx2Uw==\",\"additionalParameters\":{}}",
+      "createdDate" : 1709668238594,
+      "secretData" : "{\"value\":\"a+IRWxj4AukQ1Q+L0qVeGNLxe8I3wlEfsZlTR42rgcw=\",\"salt\":\"mqe24RpBesXCypmHHXM1ig==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
@@ -738,6 +761,7 @@
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1703614106",
       "backchannel.logout.session.required" : "true",
+      "post.logout.redirect.uris" : "+",
       "oauth2.device.authorization.grant.enabled" : "false",
       "display.on.consent.screen" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false"
@@ -753,6 +777,7 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "clientHost",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientHost",
@@ -766,6 +791,7 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "client_id",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "client_id",
@@ -779,6 +805,7 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "clientAddress",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientAddress",
@@ -1362,7 +1389,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "saml-role-list-mapper", "oidc-address-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper" ]
       }
     }, {
       "id" : "d0a6d964-1346-4995-babe-16039c69f01f",
@@ -1413,7 +1440,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-role-list-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-address-mapper", "oidc-full-name-mapper" ]
       }
     } ],
     "org.keycloak.userprofile.UserProfileProvider" : [ {
