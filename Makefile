@@ -67,7 +67,6 @@ build-dev: config ## pip install Plone packages
 .PHONY: install
 install: build-dev ## Install Plone 6.0
 
-
 .PHONY: build
 build: build-dev ## Install Plone 6.0
 
@@ -132,13 +131,18 @@ keycloak-stop: ## Stop Keycloak stack
 bin/sphinx-build: bin/pip
 	bin/pip install -r requirements-docs.txt
 
-.PHONY: build-docs
-build-docs: bin/sphinx-build  ## Build the documentation
+.PHONY: docs-build
+docs-build: bin/sphinx-build  ## Build the documentation
 	./bin/sphinx-build \
 		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
 
-.PHONY: livehtml
-livehtml: bin/sphinx-build  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
+.PHONY: docs-live
+docs-live: bin/sphinx-build  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
 	./bin/sphinx-autobuild \
 		--ignore "*.swp" \
 		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
+
+# Release Tasks
+.PHONY: release
+release: bin/pip  ## Release package to pypi.org
+	./bin/fullrelease

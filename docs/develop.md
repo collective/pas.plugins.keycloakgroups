@@ -2,7 +2,7 @@
 
 # Develop this package
 
-## Local Development Setup
+## Setup
 
 You need a working `python` environment (system, `virtualenv`, `pyenv`, etc) version 3.8 or superior.
 
@@ -50,12 +50,6 @@ To stop a running `Keycloak` (needed when running tests), use:
 make keycloak-stop
 ```
 
-## Update translations
-
-```bash
-make i18n
-```
-
 ## Format codebase
 
 ```bash
@@ -83,3 +77,26 @@ Run tests named `TestGroupsPlugin`:
 ```bash
 ./bin/tox -e test -- -k TestGroupsPlugin
 ```
+
+## Update translations
+
+```bash
+make i18n
+```
+
+## Documentation
+
+Build this documentation
+
+```bash
+make docs-build
+```
+
+### Live version
+To have a live version -- with auto-update -- of this documentation, run the command:
+
+```bash
+make docs-live
+```
+
+And then point your browser at [http://localhost:8000](http://localhost:8000)

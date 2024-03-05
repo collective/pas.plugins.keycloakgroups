@@ -40,7 +40,8 @@ setup(
     project_urls={
         "PyPI": "https://pypi.python.org/pypi/pas.plugins.keycloakgroups",
         "Source": "https://github.com/collective/pas.plugins.keycloakgroups",
-        "Tracker": "https://github.com/collective/pas.plugins.keycloakgroups/issues",
+        "Issue Tracker": "https://github.com/collective/pas.plugins.keycloakgroups/issues",
+        "Documentation": "https://collective.github.io/pas.plugins.keycloakgroups",
     },
     license="GPL version 2",
     packages=find_packages("src", exclude=["ez_setup"]),

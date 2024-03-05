@@ -27,24 +27,9 @@
 This package provides a PAS plugin providing support for using Keycloak groups inside Plone.
 As the group information will be applied to users authenticated with Keycloack, this package requires [`pas.plugins.oidc`](https://github.com/collective/pas.plugins.oidc) >= 2.0.0a1 to be installed and configured.
 
-## Features
+## Documentation
 
-PAS plugin providing the following interfaces:
-
-* Products.PluggableAuthService.interfaces.IGroupsPlugin
-* Products.PluggableAuthService.interfaces.IGroupEnumerationPlugin
-* Products.PluggableAuthService.interfaces.IRolesPlugin
-* Products.PlonePAS.interfaces.group.IGroupIntrospection
-
-## Installation
-
-This package supports sites running Plone version 6.0 and above.
-
-Add **pas.plugins.keycloakgroups** to the Plone installation using `pip`:
-
-```bash
-pip install pas.plugins.keycloakgroups
-```
+Please visit the [package documentation page](https://collective.github.io/pas.plugins.keycloakgroups) to read about how to install and configure **pas.plugins.keycloakgroups**.
 
 ## Contribute
 
