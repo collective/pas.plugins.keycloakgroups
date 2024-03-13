@@ -1,0 +1,88 @@
+# Translation of pas.plugins.keycloakgroups.pot to Spanish
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2024.
+msgid ""
+msgstr ""
+"Project-Id-Version: pas.plugins.keycloakgroups\n"
+"POT-Creation-Date: 2024-03-13 05:04+0000\n"
+"PO-Revision-Date: 2024-03-12 23:15-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: pas.plugins.keycloakgroups\n"
+"Language: es\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: pas/plugins/keycloakgroups/profiles.zcml:14
+msgid "Install support for using groups from Keycloak."
+msgstr "Instalar soporte para el uso de grupos desde Keycloak."
+
+#: pas/plugins/keycloakgroups/profiles.zcml:14
+msgid "Keycloak Groups"
+msgstr "Grupos Keycloak"
+
+#: pas/plugins/keycloakgroups/controlpanel/controlpanel.py:13
+msgid "Keycloak Groups Plugin Settings"
+msgstr "Configuración del plugin Grupos Keycloak"
+
+#: pas/plugins/keycloakgroups/profiles/default/controlpanel.xml
+msgid "Keycloak Groups Settings"
+msgstr "Configuración del Grupos Keycloak"
+
+#: pas/plugins/keycloakgroups/controlpanel/controlpanel.py:28
+msgid "Keycloak Groups settings"
+msgstr "configuración del Grupos Keycloak"
+
+#: pas/plugins/keycloakgroups/interfaces.py:23
+msgid "Keycloak base url"
+msgstr "Dirección URL base Keycloak"
+
+#: pas/plugins/keycloakgroups/interfaces.py:43
+msgid "Keycloak client_id"
+msgstr "client_id de Keycloak"
+
+#: pas/plugins/keycloakgroups/interfaces.py:53
+msgid "Keycloak client_secret"
+msgstr "client_secret de Keycloak"
+
+#: pas/plugins/keycloakgroups/interfaces.py:33
+msgid "Realm name"
+msgstr "Nombre de Reino"
+
+#: pas/plugins/keycloakgroups/profiles.zcml:23
+msgid "Uninstall Keycloak groups support."
+msgstr "Desinstalar soporte para el uso de grupos desde Keycloak."
+
+#: pas/plugins/keycloakgroups/interfaces.py:17
+msgid "Use Groups from Keycloak"
+msgstr "Usar Grupos desde Keycloak"
+
+#: pas/plugins/keycloakgroups/interfaces.py:63
+msgid "Verify Keycloak server certificate"
+msgstr "Verificar el certificado del servidor Keycloak"
+
+#. Default: "Client ID for Keycloak REST API."
+#: pas/plugins/keycloakgroups/interfaces.py:44
+msgid "help_client_id"
+msgstr "ID de cliente para la API REST de Keycloak."
+
+#. Default: "Client Secret for Keycloak REST API."
+#: pas/plugins/keycloakgroups/interfaces.py:54
+msgid "help_client_secret"
+msgstr "Secreto de cliente para la API REST de Keycloak."
+
+#. Default: "Realm to be used for Groups."
+#: pas/plugins/keycloakgroups/interfaces.py:34
+msgid "help_realm_name"
+msgstr "Reino que se utilizará para los Grupos."
+
+#. Default: "Base url for the Keycloak instance to be used"
+#: pas/plugins/keycloakgroups/interfaces.py:24
+msgid "help_server_url"
+msgstr "Dirección URL base para la instancia de Keycloak a utilizar"
