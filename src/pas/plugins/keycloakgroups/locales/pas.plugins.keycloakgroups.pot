@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2024-03-13 05:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,3 +16,71 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: pas.plugins.keycloakgroups\n"
+
+#: pas/plugins/keycloakgroups/profiles.zcml:14
+msgid "Install support for using groups from Keycloak."
+msgstr ""
+
+#: pas/plugins/keycloakgroups/profiles.zcml:14
+msgid "Keycloak Groups"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/controlpanel/controlpanel.py:13
+msgid "Keycloak Groups Plugin Settings"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/profiles/default/controlpanel.xml
+msgid "Keycloak Groups Settings"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/controlpanel/controlpanel.py:28
+msgid "Keycloak Groups settings"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:23
+msgid "Keycloak base url"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:43
+msgid "Keycloak client_id"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:53
+msgid "Keycloak client_secret"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:33
+msgid "Realm name"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/profiles.zcml:23
+msgid "Uninstall Keycloak groups support."
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:17
+msgid "Use Groups from Keycloak"
+msgstr ""
+
+#: pas/plugins/keycloakgroups/interfaces.py:63
+msgid "Verify Keycloak server certificate"
+msgstr ""
+
+#. Default: "Client ID for Keycloak REST API."
+#: pas/plugins/keycloakgroups/interfaces.py:44
+msgid "help_client_id"
+msgstr ""
+
+#. Default: "Client Secret for Keycloak REST API."
+#: pas/plugins/keycloakgroups/interfaces.py:54
+msgid "help_client_secret"
+msgstr ""
+
+#. Default: "Realm to be used for Groups."
+#: pas/plugins/keycloakgroups/interfaces.py:34
+msgid "help_realm_name"
+msgstr ""
+
+#. Default: "Base url for the Keycloak instance to be used"
+#: pas/plugins/keycloakgroups/interfaces.py:24
+msgid "help_server_url"
+msgstr ""
