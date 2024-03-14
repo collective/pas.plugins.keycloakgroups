@@ -1,1 +1,1 @@
-Add Spanish translation
+Add Spanish translation. @macagua
