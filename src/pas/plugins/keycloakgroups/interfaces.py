@@ -20,7 +20,7 @@ class IKeycloakSettings(Interface):
     )
 
     server_url = schema.TextLine(
-        title=_("Keycloak base url"),
+        title=_("Keycloak base URL"),
         description=_(
             "help_server_url",
             default="Base url for the Keycloak instance to be used",

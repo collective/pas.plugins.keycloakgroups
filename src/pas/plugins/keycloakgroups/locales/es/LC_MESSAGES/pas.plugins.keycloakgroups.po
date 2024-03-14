@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pas.plugins.keycloakgroups\n"
-"POT-Creation-Date: 2024-03-13 05:04+0000\n"
-"PO-Revision-Date: 2024-03-12 23:15-0400\n"
+"POT-Creation-Date: 2024-03-14 11:10+0000\n"
+"PO-Revision-Date: 2024-03-12 11:11-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: ES <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgid "Keycloak Groups settings"
 msgstr "configuración del Grupos Keycloak"
 
 #: pas/plugins/keycloakgroups/interfaces.py:23
-msgid "Keycloak base url"
+msgid "Keycloak base URL"
 msgstr "Dirección URL base Keycloak"
 
 #: pas/plugins/keycloakgroups/interfaces.py:43
