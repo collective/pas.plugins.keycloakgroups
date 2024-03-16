@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-03-14 11:10+0000\n"
+"POT-Creation-Date: 2024-03-16 14:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "help_realm_name"
 msgstr ""
 
-#. Default: "Base url for the Keycloak instance to be used"
+#. Default: "Base URL for the Keycloak instance to be used"
 #: pas/plugins/keycloakgroups/interfaces.py:24
 msgid "help_server_url"
 msgstr ""

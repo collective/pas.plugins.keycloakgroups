@@ -23,7 +23,7 @@ class IKeycloakSettings(Interface):
         title=_("Keycloak base URL"),
         description=_(
             "help_server_url",
-            default="Base url for the Keycloak instance to be used",
+            default="Base URL for the Keycloak instance to be used",
         ),
         required=False,
         default="",
