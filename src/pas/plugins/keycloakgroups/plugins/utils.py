@@ -37,7 +37,7 @@ def _connection_settings() -> dict:
 
 
 # Keycloak
-def get_keycloak_client() -> Union[KeycloakAdmin | None]:
+def get_keycloak_client() -> Union[KeycloakAdmin, None]:
     """Return an instance of KeycloakAdmin."""
     settings = _connection_settings()
     if settings:
