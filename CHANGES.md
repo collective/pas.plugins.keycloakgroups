@@ -9,6 +9,18 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a2 (2024-03-26)
+
+
+### New features:
+
+- Add Spanish translation. @macagua [#5](https://github.com/collective/pas.plugins.keycloakgroups/issues/5)
+
+
+### Bug fixes:
+
+- Fix typo in typing annotations [@ericof] [#7](https://github.com/collective/pas.plugins.keycloakgroups/issues/7)
+
 ## 1.0.0a1 (2024-03-05)
 
 
