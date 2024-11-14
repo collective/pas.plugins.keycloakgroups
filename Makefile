@@ -15,7 +15,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
-PLONE6=6.0-latest
+PLONE_VERSION=6.0-latest
 
 # Python checks
 PYTHON?=python3
@@ -36,6 +36,10 @@ REPOSITORY_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 COMPOSE_FOLDER=${REPOSITORY_FOLDER}/tests
 DOCS_DIR=${REPOSITORY_FOLDER}/docs
 
+VENV_FOLDER=$(REPOSITORY_FOLDER)/.venv
+BIN_FOLDER=$(VENV_FOLDER)/bin
+
+
 GIT_FOLDER=$(REPOSITORY_FOLDER)/.git
 
 
@@ -47,22 +51,30 @@ all: build
 help: ## This help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-bin/pip bin/tox bin/mxdev:
+$(BIN_FOLDER)/uv $(BIN_FOLDER)/uvx $(BIN_FOLDER)/tox:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
-	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter" "mxdev" "tox" "pre-commit"
-	if [ -d $(GIT_FOLDER) ]; then bin/pre-commit install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
+	$(PYTHON) -m venv .venv
+	$(BIN_FOLDER)/pip install -U "pip" "uv" "tox" "pre-commit"
+	if [ -d $(GIT_FOLDER) ]; then $(BIN_FOLDER)/pre-commit install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
+
+instance/etc/zope.ini: $(BIN_FOLDER)/uvx ## Create instance configuration
+	@echo "$(GREEN)==> Create instance configuration$(RESET)"
+	$(BIN_FOLDER)/uvx cookiecutter -f --no-input --config-file instance.yaml gh:plone/cookiecutter-zope-instance
 
 .PHONY: config
-config: bin/pip  ## Create instance configuration
-	@echo "$(GREEN)==> Create instance configuration$(RESET)"
-	bin/cookiecutter -f --no-input --config-file instance.yaml gh:plone/cookiecutter-zope-instance
+config: instance/etc/zope.ini
+
+requirements-mxdev.txt constraints-mxdev.txt: $(BIN_FOLDER)/uvx ## Generate constraints file
+	@echo "$(GREEN)==> Generate constraints file$(RESET)"
+	@echo '-c https://dist.plone.org/release/$(PLONE_VERSION)/constraints.txt' > requirements.txt
+	$(BIN_FOLDER)/uvx mxdev -c mx.ini
+
+$(BIN_FOLDER)/runwsgi: $(BIN_FOLDER)/uvx ## Install Plone
+	@echo "$(GREEN)==> Install Plone Build$(RESET)"
+	$(BIN_FOLDER)/uv pip install -r requirements-mxdev.txt
 
 .PHONY: build-dev
-build-dev: config ## pip install Plone packages
-	@echo "$(GREEN)==> Setup Build$(RESET)"
-	bin/mxdev -c mx.ini
-	bin/pip install -r requirements-mxdev.txt
+build-dev: constraints-mxdev.txt config $(BIN_FOLDER)/runwsgi ## install Plone packages
 
 .PHONY: install
 install: build-dev ## Install Plone 6.0
@@ -73,43 +85,48 @@ build: build-dev ## Install Plone 6.0
 .PHONY: clean
 clean: ## Remove old virtualenv and creates a new one
 	@echo "$(RED)==> Cleaning environment and build$(RESET)"
-	rm -rf bin lib lib64 include share etc var inituser pyvenv.cfg .installed.cfg instance .tox .pytest_cache
+	rm -rf bin lib lib64 include share etc var inituser pyvenv.cfg .installed.cfg .tox $(VENV_FOLDER) .pytest_cache *-mxdev.txt
+
+.PHONY: clean-data
+clean-data: ## Remove instance data
+	@echo "$(RED)==> Cleaning instance and build$(RESET)"
+	rm -rf instance
 
 .PHONY: start
-start: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi instance/etc/zope.ini
+start: $(BIN_FOLDER)/runwsgi ## Start a Plone instance on localhost:8080
+	PYTHONWARNINGS=ignore $(BIN_FOLDER)/runwsgi instance/etc/zope.ini
 
 .PHONY: console
 console: ## Start a zope console
-	PYTHONWARNINGS=ignore ./bin/zconsole debug instance/etc/zope.conf
+	PYTHONWARNINGS=ignore $(BIN_FOLDER)/zconsole debug instance/etc/zope.conf
 
 .PHONY: format
-format: bin/tox ## Format the codebase according to our standards
+format: $(BIN_FOLDER)/tox ## Format the codebase according to our standards
 	@echo "$(GREEN)==> Format codebase$(RESET)"
-	bin/tox -e format
+	$(BIN_FOLDER)/tox -e format
 
 .PHONY: lint
 lint: ## check code style
-	bin/tox -e lint
+	$(BIN_FOLDER)/tox -e lint
 
 # i18n
-bin/i18ndude: bin/pip
+$(BIN_FOLDER)/i18ndude: $(BIN_FOLDER)/pipx
 	@echo "$(GREEN)==> Install translation tools$(RESET)"
-	bin/pip install i18ndude
+	$(BIN_FOLDER)/pip install i18ndude
 
 .PHONY: i18n
-i18n: bin/i18ndude ## Update locales
+i18n: $(BIN_FOLDER)/i18ndude ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	bin/update_dist_locale
+	$(BIN_FOLDER)/update_dist_locale
 
 # Tests
 .PHONY: test
-test: bin/tox ## run tests
-	bin/tox -e test
+test: $(BIN_FOLDER)/tox ## run tests
+	$(BIN_FOLDER)/tox -e test
 
 .PHONY: test-coverage
-test-coverage: bin/tox ## run tests with coverage
-	bin/tox -e coverage
+test-coverage: $(BIN_FOLDER)/tox ## run tests with coverage
+	$(BIN_FOLDER)/tox -e coverage
 
 # Keycloak
 .PHONY: keycloak-start
@@ -128,21 +145,21 @@ keycloak-stop: ## Stop Keycloak stack
 	@docker compose -f $(COMPOSE_FOLDER)/docker-compose.yml down
 
 # Docs
-bin/sphinx-build: bin/pip
-	bin/pip install -r requirements-docs.txt
+$(BIN_FOLDER)/sphinx-build: $(BIN_FOLDER)/pipx
+	$(BIN_FOLDER)/pip install -r requirements-docs.txt
 
 .PHONY: docs-build
-docs-build: bin/sphinx-build  ## Build the documentation
-	./bin/sphinx-build \
+docs-build: $(BIN_FOLDER)/sphinx-build  ## Build the documentation
+	$(BIN_FOLDER)/sphinx-build \
 		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
 
 .PHONY: docs-live
-docs-live: bin/sphinx-build  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
-	./bin/sphinx-autobuild \
+docs-live: $(BIN_FOLDER)/sphinx-build  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
+	$(BIN_FOLDER)/sphinx-autobuild \
 		--ignore "*.swp" \
 		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
 
 # Release Tasks
 .PHONY: release
-release: bin/pip  ## Release package to pypi.org
-	./bin/fullrelease
+release: $(BIN_FOLDER)/uvx  ## Release package to pypi.org
+	$(BIN_FOLDER)/fullrelease

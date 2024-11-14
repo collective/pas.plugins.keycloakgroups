@@ -20,6 +20,8 @@ __pycache__/
 .tox
 .vscode/
 node_modules/
+forest.dot
+forest.json
 
 # venv / buildout related
 bin/
@@ -48,6 +50,7 @@ local.cfg
 
 share
 requirements-mxdev.txt
+.venv
 
 ##
 # Add extra configuration options in .meta.toml:
