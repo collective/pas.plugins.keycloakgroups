@@ -15,6 +15,7 @@ dependencies_mappings = [
     ]
 check_manifest_ignores = """
     "news/*",
+    ".vscode/*",
     "constraints-mxdev.txt",
     "requirements-mxdev.txt",
 """

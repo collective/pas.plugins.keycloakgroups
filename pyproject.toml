@@ -147,6 +147,7 @@ ignore = [
     "mx.ini",
     "tox.ini",
     "news/*",
+    ".vscode/*",
     "constraints-mxdev.txt",
     "requirements-mxdev.txt",
 
