@@ -9,6 +9,27 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0b1 (2024-11-13)
+
+
+### New features:
+
+- Update Brazilian Portuguese translation. [@ericof] [#11](https://github.com/collective/pas.plugins.keycloakgroups/issues/11)
+
+
+### Bug fixes:
+
+- Fix control panel serialization [@ericof] [#9](https://github.com/collective/pas.plugins.keycloakgroups/issues/9)
+
+
+### Internal:
+
+- Update pytest-plone to version 0.5.0 [@ericof] [#10](https://github.com/collective/pas.plugins.keycloakgroups/issues/10)
+- Add sane defaults for VSCode development [@ericof] 
+- Clean trove classifiers for this package. [@ericof] 
+- Update plone/meta [@ericof] 
+- Use `uv` for package installation [@ericof] 
+
 ## 1.0.0a2 (2024-03-26)
 
 
