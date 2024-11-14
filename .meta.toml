@@ -42,7 +42,7 @@ test_path = "/tests"
 
 [github]
 ref = "main"
-py_versions = "['3.12', '3.11']"
+py_versions = '["3.12", "3.11"]'
 jobs = [
     "qa",
     "test",
