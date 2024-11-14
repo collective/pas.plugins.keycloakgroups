@@ -41,7 +41,8 @@ test_runner = "pytest"
 test_path = "/tests"
 
 [github]
-ref = "1.0.0"
+ref = "main"
+py_versions = "['3.12', '3.11']"
 jobs = [
     "qa",
     "test",
