@@ -57,6 +57,11 @@ $(BIN_FOLDER)/uv $(BIN_FOLDER)/uvx $(BIN_FOLDER)/tox:
 	$(BIN_FOLDER)/pip install -U "pip" "uv" "tox" "pre-commit"
 	if [ -d $(GIT_FOLDER) ]; then $(BIN_FOLDER)/pre-commit install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
 
+$(BIN_FOLDER)/fullrelease: $(BIN_FOLDER)/uv ## Install zest.releaser
+	@echo "$(GREEN)==> Install zest.releaser$(RESET)"
+	$(BIN_FOLDER)/uv pip install 'zest.releaser[recommended]' 'zestreleaser.towncrier'
+
+
 instance/etc/zope.ini: $(BIN_FOLDER)/uvx ## Create instance configuration
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
 	$(BIN_FOLDER)/uvx cookiecutter -f --no-input --config-file instance.yaml gh:plone/cookiecutter-zope-instance
@@ -161,5 +166,5 @@ docs-live: $(BIN_FOLDER)/sphinx-build  ## Rebuild Sphinx documentation on change
 
 # Release Tasks
 .PHONY: release
-release: $(BIN_FOLDER)/uvx  ## Release package to pypi.org
+release: $(BIN_FOLDER)/fullrelease  ## Release package to pypi.org
 	$(BIN_FOLDER)/fullrelease
