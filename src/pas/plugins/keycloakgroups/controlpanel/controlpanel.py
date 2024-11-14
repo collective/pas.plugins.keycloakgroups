@@ -22,7 +22,7 @@ class KeycloakGroupsSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
 class KeycloakGroupsSettingsConfigletPanel(RegistryConfigletPanel):
     """Control Panel endpoint"""
 
-    schema = IBrowserLayer
+    schema = IKeycloakSettings
     configlet_id = "keycloak_groups"
     configlet_category_id = "plone-users"
     title = _("Keycloak Groups settings")

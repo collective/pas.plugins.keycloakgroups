@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 from plone import api
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.restapi.testing import RelativeSession
@@ -85,6 +87,14 @@ def request_api_factory(portal):
 @pytest.fixture()
 def api_anon_request(request_api_factory):
     return request_api_factory()
+
+
+@pytest.fixture()
+def api_manager_request(request_api_factory):
+    request = request_api_factory()
+    request.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+    yield request
+    request.auth = ()
 
 
 @pytest.fixture()
