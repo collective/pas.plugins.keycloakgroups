@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pas.plugins.keycloakgroups\n"
-"POT-Creation-Date: 2024-03-16 14:30+0000\n"
+"POT-Creation-Date: 2024-11-14 01:30+0000\n"
 "PO-Revision-Date: 2024-03-16 14:32-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: ES <LL@li.org>\n"
