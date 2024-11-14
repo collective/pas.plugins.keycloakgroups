@@ -110,14 +110,14 @@ lint: ## check code style
 	$(BIN_FOLDER)/tox -e lint
 
 # i18n
-$(BIN_FOLDER)/i18ndude: $(BIN_FOLDER)/pipx
+$(BIN_FOLDER)/i18ndude: $(BIN_FOLDER)/uvx
 	@echo "$(GREEN)==> Install translation tools$(RESET)"
-	$(BIN_FOLDER)/pip install i18ndude
+	$(BIN_FOLDER)/uv pip install i18ndude
 
 .PHONY: i18n
 i18n: $(BIN_FOLDER)/i18ndude ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
-	$(BIN_FOLDER)/update_dist_locale
+	$(BIN_FOLDER)/python src/pas/plugins/keycloakgroups/locales/update.py
 
 # Tests
 .PHONY: test
